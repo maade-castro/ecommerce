@@ -10,11 +10,10 @@
 body{
     margin: 0 auto;
     max-width: 1200px;
-    font-family: 'Lato';
-    color: #333;
-    
+    color: #070707;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
-
+/******************carrito de compras************/
 .icon-cart{
     width: 40px;
     height: 40px;
@@ -28,13 +27,6 @@ body{
 img{
     max-width: 50%;
     margin-left: 20%;
-}
-
-/* Header */
-header{
-    display: flex;
-    justify-content: space-between;
-    padding: 30px 0 40px 0;
 }
 
 .container-icon{
@@ -58,7 +50,7 @@ header{
 }
 
 #contador-productos{
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .container-cart-products{
@@ -73,7 +65,18 @@ header{
     border-radius: 10px;
     
 }
+/************************Header *************************/
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0 40px 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.tittle{
+    color: #d26a08;
+}
 
+/********************modal carrito de compras***********/
 .cart-product{
     display: flex;
     align-items: center;
@@ -137,10 +140,7 @@ header{
     display: none;
 }
 
-
-
-
-/* Main */
+/************************** Main= card ***********************/
 .container-items{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -148,16 +148,16 @@ header{
 }
 
 .item{
-    border-radius: 10px;
+    border-radius: 18px;
 }
 
 .item:hover{
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 10px 20px #d26a08;
 }
 
 .item img{
-    width: 100%;
-    height: 300px;
+    width: 50%;
+    height: 230px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
     transition: all .5s;
@@ -168,30 +168,41 @@ header{
 }
 
 .item:hover img{
-    transform: scale(1.2);
+    transform: scale(1.7);
 }
-
+/**********description card*****/
 .info-product{
     padding: 15px 30px;
-    line-height: 2;
+    line-height: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    font-size: 13px;
+}
+
+.description{
+    color: rgb(103, 97, 97);
+    font-size: 12px;
 }
 
 .price{
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 900;
 }
-
 
 .info-product button{
     border: none;
     background: none;
-    background-color: #000;
+    background-color: #1b4095;
     color: #fff;
     padding: 15px 10px;
     cursor: pointer;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    border-radius: 12px;
+}
+.info-product button:hover{
+    background-color: rgb(21, 164, 42);
 }
 
 .cart-empty{
@@ -204,11 +215,11 @@ header{
     display: none;
 }
 
-/*boton vaciar carrito*/
+/****boton vaciar carrito*****/
 
 .btn-clear-all{
     border: none;
-    background-color: #000;
+    background-color: #1b4095;
     color: #fff;
     padding: 15px 0;
     display: block;
@@ -223,7 +234,23 @@ header{
 }
 
 .btn-clear-all:hover{
-    background-color: #333;
+    background-color: #db0909;
     transform: scale(1.03);
     border-radius: 0;
+}
+
+/*navbar*/
+.navbar {
+    display: flex;
+    gap: 35%;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    justify-content: space-around;
+}
+.navbar a{
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
 }

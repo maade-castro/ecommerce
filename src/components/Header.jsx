@@ -20,7 +20,13 @@ export const Header = ({ allProducts, setAllProducts, total, countProducts, setC
 
 	return (
 		<header>
-			<h1>Tienda F-Pop</h1>
+			<h1 className='tittle'>Tienda Pop</h1>
+			<nav className="navbar">
+            <a href="./index.html" className="nav__active">Home</a>
+            <a href="./alta.html">Alta</a>
+            <a href="./contacto.html">Contacto</a>
+            <a href="./nosotros.html">Nosotros</a>
+        </nav>
 
 			<div className="container-icon">
 				<div className="container-cart-icon"
