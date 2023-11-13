@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 
+import { Link } from 'react-router-dom';
+
+
 export const Header = ({ allProducts, setAllProducts, total, countProducts, setCountProducts, setTotal }) => {
 
 	const [active, setActive] = useState(false)
@@ -22,11 +25,12 @@ export const Header = ({ allProducts, setAllProducts, total, countProducts, setC
 		<header>
 			<h1 className='tittle'>Tienda Pop</h1>
 			<nav className="navbar">
-            <a href="./index.html" className="nav__active">Home</a>
-            <a href="./alta.html">Alta</a>
-            <a href="./contacto.html">Contacto</a>
-            <a href="./nosotros.html">Nosotros</a>
-        </nav>
+       			 <Link to="/" className="nav__active">Home</Link>
+        		<Link to="/alta">Alta</Link>
+        		<Link to="/contacto">Contacto</Link>
+        		<Link to="/nosotros">Nosotros</Link>
+     		 </nav>
+
 
 			<div className="container-icon">
 				<div className="container-cart-icon"
