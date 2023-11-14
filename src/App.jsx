@@ -32,7 +32,6 @@ function App() {
           <Route path="/nosotros" element={<Nosotros/>} />
     </Routes>
 
-   
    </>
   )
 }

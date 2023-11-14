@@ -25,7 +25,7 @@ export const Header = ({ allProducts, setAllProducts, total, countProducts, setC
 		<header>
 			<h1 className='tittle'>Tienda Pop</h1>
 			<nav className="navbar">
-       			 <Link to="/" className="nav__active">Home</Link>
+       			 <Link to="/" >Home</Link>
         		<Link to="/alta">Alta</Link>
         		<Link to="/contacto">Contacto</Link>
         		<Link to="/nosotros">Nosotros</Link>
