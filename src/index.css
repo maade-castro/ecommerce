@@ -263,22 +263,15 @@ header{
 
 .tittle_form{
     text-align:  center;
+    margin-bottom: 7px;
 }
 
  .login-box {
-    position: absolute;
-    top: 60%;
-    left: 50%;
     padding: 20px;
-    transform: translate(-50%, -50%);
     background: #1b4095;
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
-  }
-  
-  .login-box .user-box {
-    position: relative;
   }
   
   .login-box .user-box input, textarea {
@@ -359,7 +352,7 @@ header{
     animation: btn-anim1 2s linear infinite;
   }
 
-  /*mensaje de error en formulario*/
+  /*******************mensaje de error en formulario*************/
   .error-message {
     color: rgba(220, 6, 6, 0.769);
     font-size: 18px;
@@ -421,3 +414,50 @@ header{
         padding: 10px;
         width: 300px;
 }
+
+
+/*prueba modal*/
+
+.cart-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cart-modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    width: 500px;
+    height: 400px;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 70px;
+    color: #333;
+  }
+  
+  .row-product {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .delete-button {
+    cursor: pointer;
+    color: red;
+    margin-top: 5px;
+  }
+  
+  /* ... otros estilos según sea necesario ... */
+  

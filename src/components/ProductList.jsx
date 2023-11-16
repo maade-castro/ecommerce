@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-
-
 export const ProductList = ({allProducts, setAllProducts, countProducts, setCountProducts, total, setTotal}) => {
-
 
   const apiUrl = 'https://6553ad3a5449cfda0f2f095d.mockapi.io/api/products';
 
@@ -24,10 +21,7 @@ export const ProductList = ({allProducts, setAllProducts, countProducts, setCoun
 
   useEffect(() => {
     fetchData();
-  }, []); // Empty dependency array to ensure useEffect runs only once
-
-
-
+  }, []); 
 
   const onAddProduct= (product) =>{
 
@@ -45,6 +39,7 @@ export const ProductList = ({allProducts, setAllProducts, countProducts, setCoun
     setCountProducts(countProducts + product.quantity);
     setAllProducts([...allProducts, product]);
   };
+  console.log(onAddProduct)
 
   return (
     <div className='container-items'>
@@ -67,3 +62,4 @@ export const ProductList = ({allProducts, setAllProducts, countProducts, setCoun
   );
 };
 
+export default ProductList;
