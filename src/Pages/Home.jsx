@@ -1,9 +1,9 @@
 import React  from 'react'
 import { ProductList } from '../components/ProductList'
-import { Alta } from './Alta';
 
 
-export const Home = ({ allProducts, setAllProducts, total, setTotal, countProducts, setCountProducts, onAddNewProduct }) => {
+
+export const Home = ({ allProducts, setAllProducts, total, setTotal, countProducts, setCountProducts,  }) => {
 
   return (
     <div>
@@ -14,7 +14,7 @@ export const Home = ({ allProducts, setAllProducts, total, setTotal, countProduc
    setTotal= {setTotal}
    countProducts={countProducts}
    setCountProducts= {setCountProducts}
-   onAddNewProduct={onAddNewProduct} />
+    />
    
     </div>
   )

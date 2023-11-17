@@ -44,18 +44,6 @@ export const ProductList = ({allProducts, setAllProducts, countProducts, setCoun
 	  };
  
 
-    const onDeleteProduct = (product) => {
-      if (product && product.nameProduct) {
-        const results = allProducts.filter(item => item.id !== product.id);
-        setTotal(total - product.price * product.quantity);
-        setCountProducts(countProducts - product.quantity);
-        setAllProducts(results);
-        toast.error(`${product.nameProduct} Eliminado`);
-      } else {
-        console.error('No se pudo eliminar el producto.');
-      }
-    };
-
     const onAddNewProduct = (newProduct) => {
       setTotal(total + newProduct.price * newProduct.quantity);
       setCountProducts(countProducts + newProduct.quantity);

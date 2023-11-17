@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CartModal = ({ isOpen, onClose, allProducts, setAllProducts, total, countProducts, setCountProducts, setTotal }) => {
   useEffect(() => {
@@ -23,6 +25,8 @@ const CartModal = ({ isOpen, onClose, allProducts, setAllProducts, total, countP
 
   const onDeleteProduct = (product) => {
     const results = allProducts.filter(item => item.id !== product.id);
+ 
+    toast.error(`${product.nameProduct} Eliminado`);
 
     setTotal(total - product.price * product.quantity || 0 );
     setCountProducts(countProducts - product.quantity);
@@ -41,7 +45,9 @@ const CartModal = ({ isOpen, onClose, allProducts, setAllProducts, total, countP
       item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
     );
 
-    setTotal(total + product.price || 0);
+      console.log(product)
+
+    setTotal(total + Number(product.price)  || 0);
     setCountProducts(countProducts + 1);
     setAllProducts(products);
   };

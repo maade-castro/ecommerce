@@ -7,7 +7,7 @@ import {Contacto} from './Pages/Contacto'
 import {Nosotros} from './Pages/Nosotros'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ProductList from './components/ProductList';
+
 
 
 function App() {
