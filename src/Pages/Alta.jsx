@@ -2,50 +2,90 @@ import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const Alta = () => {
+export const Alta = ({ addNewProduct, onAddNewProduct }) => {
   const [nombreError, setNombreError] = useState(false);
   const [descripcionError, setDescripcionError] = useState(false);
   const [precioError, setPrecioError] = useState(false);
   const [stockError, setStockError] = useState(false);
+  const [formValues, setFormValues] = useState({
+    nombre: '',
+    descripcion: '',
+    precio: '',
+    stock: ''
+  });
 
   const handleNombreChange = (event) => {
-    // Permite espacios, caracteres especiales, mayúsculas y sin números
     const regex = /^[A-Za-z\s!@#$%^&*(),.?":{}|<>]+$/;
     setNombreError(!regex.test(event.target.value));
-  };  
+    handleInputChange('nombre', event.target.value);
+  };
 
   const handleDescripcionChange = (event) => {
-    // Permite caracteres especiales, hasta 20 letras, espacios, mayúsculas y excluye números
     const regex = /^[A-Za-z\s!@#$%^&*(),.?":{}|<>]{0,20}$/;
     setDescripcionError(!regex.test(event.target.value));
-  };  
+    handleInputChange('descripcion', event.target.value);
+  };
 
   const handlePrecioChange = (event) => {
-    // Debe empezar con $ o € seguido de solo números y opcionalmente un punto decimal y dígitos para los centavos
     const regex = /^(?:\$|€)[\d]+(?:\.\d+)?$/;
     setPrecioError(!regex.test(event.target.value));
+    handleInputChange('precio', event.target.value);
   };
-    
+
   const handleStockChange = (event) => {
-    // Permite solo números, sin espacios
     const regex = /^[0-9]+$/;
     setStockError(!regex.test(event.target.value));
+    handleInputChange('stock', event.target.value);
   };
-  
 
+  const handleInputChange = (field, value) => {
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [field]: value
+    }));
+  };
+
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     // Verificar errores en los campos antes de enviar
-    if (!nombreError && !descripcionError && !precioError && !stockError) {
+    const hayErrores = nombreError || descripcionError || precioError || stockError;
+
+    if (!hayErrores) {
       // Lógica de envío exitosa
+      const nuevoProducto = {
+        id: Date.now(),
+        nameProduct: formValues.nombre,
+        description: formValues.descripcion,
+        price: parseFloat(formValues.precio.replace(/[^\d.]/g, '')),
+        quantity: parseInt(formValues.stock, 10),
+        urlImage: '' // Añade lógica para manejar la imagen si es necesario
+      };
+
+      // Añadir el nuevo producto
+      addNewProduct(nuevoProducto);
+
+      // Limpiar el formulario
+      setFormValues({
+        nombre: '',
+        descripcion: '',
+        precio: '',
+        stock: ''
+      });
+
+      // Mostrar notificación de éxito
       toast.success('Formulario añadido exitosamente', { position: toast.POSITION.TOP_RIGHT });
+
+      // Llama a la función para agregar el nuevo producto en ProductList.jsx
+      onAddNewProduct(nuevoProducto);
     } else {
       // Mostrar mensaje de error
       toast.error('Error: Por favor, completa correctamente todos los campos', { position: toast.POSITION.TOP_RIGHT });
     }
   };
+
 
   return (
     <>
@@ -61,8 +101,9 @@ export const Alta = () => {
             required
             id='nombre'
             onChange={handleNombreChange}
+            value={formValues.nombre}
           />
-          {nombreError && <p className="error-message">Por favor, ingresa un nombre válido.</p>}
+          {nombreError && <p className="error-message">El nombre no puede contener números ni caracteres especiales</p>}
 
           <label htmlFor="description">Descripcion</label>
           <input
@@ -71,6 +112,7 @@ export const Alta = () => {
             required
             id='description'
             onChange={handleDescripcionChange}
+            value={formValues.descripcion}
           />
           {descripcionError && <p className="error-message">Por favor, ingresa una descripción válida.</p>}
 
@@ -81,8 +123,9 @@ export const Alta = () => {
             required
             id='precio'
             onChange={handlePrecioChange}
+            value={formValues.precio}
           />
-          {precioError && <p className="error-message">Por favor, ingresa un precio válido.</p>}
+          {precioError && <p className="error-message">Inicie con "$" seguido del monto sin espacios</p>}
 
           <label htmlFor="stock">Stock</label>
           <input
@@ -91,6 +134,7 @@ export const Alta = () => {
             required
             id='stock'
             onChange={handleStockChange}
+            value={formValues.stock}
           />
           {stockError && <p className="error-message">Por favor, ingresa una cantidad de stock válida.</p>}
 
@@ -101,6 +145,7 @@ export const Alta = () => {
             required
             id='img'
           />
+
           <div className="info-product">
             <button type="submit">Añadir</button>
           </div>

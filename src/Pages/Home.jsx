@@ -1,8 +1,9 @@
-import { useState } from 'react'
 import React  from 'react'
 import { ProductList } from '../components/ProductList'
+import { Alta } from './Alta';
 
-export const Home = ({ allProducts, setAllProducts, total, setTotal, countProducts, setCountProducts }) => {
+
+export const Home = ({ allProducts, setAllProducts, total, setTotal, countProducts, setCountProducts, onAddNewProduct }) => {
 
   return (
     <div>
@@ -12,7 +13,9 @@ export const Home = ({ allProducts, setAllProducts, total, setTotal, countProduc
    total= {total}
    setTotal= {setTotal}
    countProducts={countProducts}
-   setCountProducts= {setCountProducts} />
+   setCountProducts= {setCountProducts}
+   onAddNewProduct={onAddNewProduct} />
+   
     </div>
   )
 }

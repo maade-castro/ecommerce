@@ -4,11 +4,9 @@ import CartModal from './CartModal';
 import { FaShoppingBag } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-;
 
 export const Header = ({ allProducts, setAllProducts, total, countProducts, setCountProducts, setTotal }) => {
 	
-
 	const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
 	const openCartModal = () => {
@@ -20,32 +18,6 @@ export const Header = ({ allProducts, setAllProducts, total, countProducts, setC
 	  };
 
 
-	  const onAddProduct = (product) => {
-		if (allProducts.find(item => item.id === product.id)) {
-		  const products = allProducts.map(item =>
-			item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-		  );
-
-		  setTotal(total + product.price * product.quantity);
-		  setCountProducts(countProducts + product.quantity);
-		  setAllProducts([...products]);
-		} else {
-		  setTotal(total + product.price * product.quantity);
-		  setCountProducts(countProducts + product.quantity);
-		  setAllProducts([...allProducts, product]);
-		}
-		toast.success(`${product.nameProduct} Añadido`, { position: toast.POSITION.TOP_RIGHT });
-	  };
-
-	  const onDeleteProduct = (product) => {
-		const results = allProducts.filter(item => item.id !== product.id);
-
-		setTotal(total - product.price * product.quantity);
-		setCountProducts(countProducts - product.quantity);
-		setAllProducts(results);
-
-		toast.error(`${product.nameProduct} Eliminado`);
-	  };
 
 	return (
 		<header>
@@ -80,7 +52,6 @@ export const Header = ({ allProducts, setAllProducts, total, countProducts, setC
       />
 	  
     </header>
-
   );
 };
 
