@@ -23,24 +23,24 @@ export const ProductList = ({allProducts, setAllProducts, countProducts, setCoun
     fetchData();
   }, []); 
 
-  const onAddProduct= (product) =>{
+  
+  const onAddProduct = (product) => {
+   
+    if (allProducts.find(item => item.id === product.id)) {
+      const products = allProducts.map(item =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
 
-    if (allProducts.find(item => item.id === product.id)){
-
-      const products = allProducts.map(item => item.id === product.id ? {...item, quantity: 
-        item.quantity + 1} : item );
-
-        setTotal(total + product.price * product.quantity);
-        setCountProducts(countProducts + product.quantity);
-        return setAllProducts([...products]);
+      setTotal(total + product.price);
+      setCountProducts(countProducts + 1);
+      return setAllProducts([...products]);
     }
 
-    setTotal(total + product.price * product.quantity);
-    setCountProducts(countProducts + product.quantity);
-    setAllProducts([...allProducts, product]);
+    setTotal(total + product.price);
+    setCountProducts(countProducts + 1);
+    setAllProducts([...allProducts, { ...product, quantity: 1 }]);
   };
-  console.log(onAddProduct)
-
+ 
   return (
     <div className='container-items'>
       {apiData.map(product => (

@@ -27,7 +27,17 @@ function App() {
     />
 
     <Routes>
-          <Route exact path="/" element= {<Home/>} />
+    <Route
+          exact
+          path="/"
+          element={<Home 
+          allProducts={allProducts} 
+          setAllProducts={setAllProducts} 
+          total={total} 
+          setTotal={setTotal} 
+          countProducts={countProducts} 
+          setCountProducts={setCountProducts} />}
+        />
           <Route path="/alta" element={<Alta/>} />
           <Route path="/contacto" element={<Contacto/>} />
           <Route path="/nosotros" element={<Nosotros/>} />

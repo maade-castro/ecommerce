@@ -4,8 +4,7 @@ import CartModal from './CartModal';
 import { FaShoppingBag } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
+;
 
 export const Header = ({ allProducts, setAllProducts, total, countProducts, setCountProducts, setTotal }) => {
 	
@@ -13,8 +12,8 @@ export const Header = ({ allProducts, setAllProducts, total, countProducts, setC
 	const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
 	const openCartModal = () => {
-		setIsCartModalOpen(true);
-	  };
+  setIsCartModalOpen(!isCartModalOpen);
+};
 	
 	  const closeCartModal = () => {
 		setIsCartModalOpen(false);
@@ -50,6 +49,8 @@ export const Header = ({ allProducts, setAllProducts, total, countProducts, setC
 
 		toast.error(`Producto eliminado: ${product.nameProduct}`);
 	  };
+
+	  console.log(onAddProduct)
 
 	return (
 		<header>
