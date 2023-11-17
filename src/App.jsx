@@ -6,8 +6,8 @@ import {Home} from './Pages/Home'
 import  {Alta} from './Pages/Alta';
 import {Contacto} from './Pages/Contacto'
 import {Nosotros} from './Pages/Nosotros'
-import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [allProducts, setAllProducts] = useState([]);
@@ -17,6 +17,7 @@ function App() {
     
   return (
    <> 
+  <ToastContainer />
    <Header 
    allProducts= {allProducts} 
    setAllProducts= {setAllProducts}
@@ -42,8 +43,6 @@ function App() {
           <Route path="/contacto" element={<Contacto/>} />
           <Route path="/nosotros" element={<Nosotros/>} />
     </Routes>
-
-    <ToastContainer />
    </>
   )
 }

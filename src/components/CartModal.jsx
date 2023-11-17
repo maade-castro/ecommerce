@@ -24,7 +24,7 @@ const CartModal = ({ isOpen, onClose, allProducts, setAllProducts, total, countP
   const onDeleteProduct = (product) => {
     const results = allProducts.filter(item => item.id !== product.id);
 
-    setTotal(total - product.price * product.quantity);
+    setTotal(total - product.price * product.quantity || 0 );
     setCountProducts(countProducts - product.quantity);
     setAllProducts(results);
   };
@@ -41,7 +41,7 @@ const CartModal = ({ isOpen, onClose, allProducts, setAllProducts, total, countP
       item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
     );
 
-    setTotal(total + product.price);
+    setTotal(total + product.price || 0);
     setCountProducts(countProducts + 1);
     setAllProducts(products);
   };
@@ -52,7 +52,7 @@ const CartModal = ({ isOpen, onClose, allProducts, setAllProducts, total, countP
         item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
       );
 
-      setTotal(total - product.price);
+      setTotal(total - product.price || 0 );
       setCountProducts(countProducts - 1);
       setAllProducts(products);
     }
@@ -84,7 +84,7 @@ const CartModal = ({ isOpen, onClose, allProducts, setAllProducts, total, countP
             </div>
             <div className='cart-total'>
               <h3>Total:</h3>
-              <span className="total-pagar">${total}</span>
+              <span className="total-pagar">${total }</span>
             </div>
             <button className="btn-clear-all" onClick={onCleanCart}>
               Vaciar Carrito

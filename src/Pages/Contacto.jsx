@@ -16,6 +16,8 @@ export const Contacto = () => {
     setEmailError(!isValid);
   };
 
+
+  
   return (
     <>
       <h1 className='tittle_form'>Formulario de Contacto</h1>

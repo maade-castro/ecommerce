@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 export const ProductList = ({allProducts, setAllProducts, countProducts, setCountProducts, total, setTotal}) => {
 
   const apiUrl = 'https://6553ad3a5449cfda0f2f095d.mockapi.io/api/products';
@@ -34,6 +35,7 @@ export const ProductList = ({allProducts, setAllProducts, countProducts, setCoun
       setTotal(total + product.price);
       setCountProducts(countProducts + 1);
       return setAllProducts([...products]);
+
     }
 
     setTotal(total + product.price);

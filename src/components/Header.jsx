@@ -34,23 +34,18 @@ export const Header = ({ allProducts, setAllProducts, total, countProducts, setC
 		  setCountProducts(countProducts + product.quantity);
 		  setAllProducts([...allProducts, product]);
 		}
-		toast.success(`Producto añadido: ${product.nameProduct}`);
+		toast.success(`${product.nameProduct} Añadido`, { position: toast.POSITION.TOP_RIGHT });
 	  };
 
 	  const onDeleteProduct = (product) => {
 		const results = allProducts.filter(item => item.id !== product.id);
 
-		console.log("Product object:", product);
-
-	
 		setTotal(total - product.price * product.quantity);
 		setCountProducts(countProducts - product.quantity);
 		setAllProducts(results);
 
-		toast.error(`Producto eliminado: ${product.nameProduct}`);
+		toast.error(`${product.nameProduct} Eliminado`);
 	  };
-
-	  console.log(onAddProduct)
 
 	return (
 		<header>
@@ -83,7 +78,9 @@ export const Header = ({ allProducts, setAllProducts, total, countProducts, setC
         countProducts={countProducts}
         setCountProducts={setCountProducts}
       />
+	  
     </header>
+
   );
 };
 

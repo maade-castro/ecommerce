@@ -145,6 +145,13 @@ header{
     display: none;
 }
 
+.quantity-button{
+    background-color: #d26a08;
+    font-size: 20px;
+    margin: 8px;
+    padding: 7px;
+}
+
 /************************** Main= card ***********************/
 .container-items{
     display: grid;
@@ -397,7 +404,7 @@ header{
     height: 25px;
 }
 
-/*nosotros*/
+/*****************nosotros**********/
 .nosotros{
     display: flex;
     padding: 30px 0px;
@@ -459,5 +466,8 @@ header{
     margin-top: 5px;
   }
   
-  /* ... otros estilos según sea necesario ... */
+  .container-cart-icon{
+    cursor: pointer;
+  }
+  
   
