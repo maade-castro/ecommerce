@@ -14,6 +14,9 @@ function App() {
   const [allProducts, setAllProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [countProducts, setCountProducts] = useState(0);
+  const apiUrl = 'https://6553ad3a5449cfda0f2f095d.mockapi.io/api/products'; 
+
+  
 
 
   return (
@@ -50,7 +53,7 @@ function App() {
             setTotal={setTotal}
             countProducts={countProducts}
             setCountProducts={setCountProducts}
-
+            apiUrl={apiUrl}
           />}
         />
 

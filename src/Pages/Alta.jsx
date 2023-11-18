@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const Alta = ({ addNewProduct, onAddNewProduct }) => {
+export const Alta = ({ apiUrl, onAddNewProduct }) => {
   const [nombreError, setNombreError] = useState(false);
   const [descripcionError, setDescripcionError] = useState(false);
   const [precioError, setPrecioError] = useState(false);
@@ -63,7 +63,7 @@ export const Alta = ({ addNewProduct, onAddNewProduct }) => {
             description: formValues.descripcion,
             price: parseFloat(formValues.precio.replace(/[^\d.]/g, '')),
             quantity: parseInt(formValues.stock, 10),
-            urlImage: '' // Añade lógica para manejar la imagen si es necesario
+            urlImage: '' 
           }),
         });
   
