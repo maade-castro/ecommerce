@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Alta } from '../Pages/Alta';
 
-export const ProductList = ({allProducts, setAllProducts, countProducts, setCountProducts, total, setTotal, addNewProduct}) => {
-
+export const ProductList = ({ allProducts, setAllProducts, countProducts, setCountProducts, total, setTotal, addNewProduct }) => {
   const apiUrl = 'https://6553ad3a5449cfda0f2f095d.mockapi.io/api/products';
-
   const [apiData, setApiData] = useState([]);
 
   const fetchData = async () => {
@@ -27,31 +24,47 @@ export const ProductList = ({allProducts, setAllProducts, countProducts, setCoun
   }, []); 
 
   const onAddProduct = (product) => {
-		if (allProducts.find(item => item.id === product.id)) {
-		  const products = allProducts.map(item =>
-			item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-		  );
+    if (allProducts.find(item => item.id === product.id)) {
+      const products = allProducts.map(item =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
 
-		  setTotal(total + product.price * product.quantity);
-		  setCountProducts(countProducts + product.quantity);
-		  setAllProducts([...products]);
-		} else {
-		  setTotal(total + product.price * product.quantity);
-		  setCountProducts(countProducts + product.quantity);
-		  setAllProducts([...allProducts, product]);
-		}
-		toast.success(`${product.nameProduct} Añadido`, { position: toast.POSITION.TOP_RIGHT });
-	  };
- 
+      setTotal(total + product.price * product.quantity);
+      setCountProducts(countProducts + product.quantity);
+      setAllProducts([...products]);
+    } else {
+      setTotal(total + product.price * product.quantity);
+      setCountProducts(countProducts + product.quantity);
+      setAllProducts([...allProducts, product]);
+    }
+    toast.success(`${product.nameProduct} Añadido`, { position: toast.POSITION.TOP_RIGHT });
+  };
 
-    const onAddNewProduct = (newProduct) => {
+  const onAddNewProduct = async (newProduct) => {
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newProduct),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add new product');
+      }
+
+      // Después de agregar el producto en la API, actualiza el estado local si es necesario.
       setTotal(total + newProduct.price * newProduct.quantity);
       setCountProducts(countProducts + newProduct.quantity);
       setAllProducts([...allProducts, newProduct]);
-      toast.success(`${newProduct.nameProduct} Añadido`, { position: toast.POSITION.TOP_RIGHT });
-    };
-          
 
+      toast.success(`${newProduct.nameProduct} Añadido`, { position: toast.POSITION.TOP_RIGHT });
+    } catch (error) {
+      console.error('Error adding new product:', error);
+      toast.error('Error al agregar el nuevo producto', { position: toast.POSITION.TOP_RIGHT });
+    }
+  };
 
   return (
     <div className='container-items'>

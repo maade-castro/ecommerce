@@ -45,48 +45,62 @@ export const Alta = ({ addNewProduct, onAddNewProduct }) => {
     }));
   };
 
-  
 
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Verificar errores en los campos antes de enviar
     const hayErrores = nombreError || descripcionError || precioError || stockError;
-
+  
     if (!hayErrores) {
-      // Lógica de envío exitosa
-      const nuevoProducto = {
-        id: Date.now(),
-        nameProduct: formValues.nombre,
-        description: formValues.descripcion,
-        price: parseFloat(formValues.precio.replace(/[^\d.]/g, '')),
-        quantity: parseInt(formValues.stock, 10),
-        urlImage: '' // Añade lógica para manejar la imagen si es necesario
-      };
-
-      // Añadir el nuevo producto
-      addNewProduct(nuevoProducto);
-
-      // Limpiar el formulario
-      setFormValues({
-        nombre: '',
-        descripcion: '',
-        precio: '',
-        stock: ''
-      });
-
-      // Mostrar notificación de éxito
-      toast.success('Formulario añadido exitosamente', { position: toast.POSITION.TOP_RIGHT });
-
-      // Llama a la función para agregar el nuevo producto en ProductList.jsx
-      onAddNewProduct(nuevoProducto);
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            nameProduct: formValues.nombre,
+            description: formValues.descripcion,
+            price: parseFloat(formValues.precio.replace(/[^\d.]/g, '')),
+            quantity: parseInt(formValues.stock, 10),
+            urlImage: '' // Añade lógica para manejar la imagen si es necesario
+          }),
+        });
+  
+        if (!response.ok) {
+          throw new Error('Error al enviar datos al servidor');
+        }
+  
+        // Obtén la respuesta del servidor, si es necesario
+        const nuevoProducto = await response.json();
+  
+        // Añadir el nuevo producto al estado local
+        addNewProduct(nuevoProducto);
+  
+        // Limpiar el formulario
+        setFormValues({
+          nombre: '',
+          descripcion: '',
+          precio: '',
+          stock: ''
+        });
+  
+        // Mostrar notificación de éxito
+        toast.success('Producto añadido exitosamente', { position: toast.POSITION.TOP_RIGHT });
+  
+        // Llama a la función para agregar el nuevo producto en ProductList.jsx
+        onAddNewProduct(nuevoProducto);
+      } catch (error) {
+        console.error('Error al enviar datos:', error);
+        // Mostrar notificación de error
+        toast.error('Error al enviar datos al servidor', { position: toast.POSITION.TOP_RIGHT });
+      }
     } else {
       // Mostrar mensaje de error
       toast.error('Error: Por favor, completa correctamente todos los campos', { position: toast.POSITION.TOP_RIGHT });
     }
   };
-
-
+  
   return (
     <>
       <h1 className='tittle_form'>Alta de Productos</h1>
